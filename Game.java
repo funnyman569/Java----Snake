@@ -14,6 +14,8 @@ public class Game extends JPanel implements KeyListener{
     private final int GRID_HEIGHT = 600;
     private final int TILE_SIZE = 20;
 
+
+    //Constructors
     public Game() {
         snake  = new Snake (TILE_SIZE);
         apple = new Apple (TILE_SIZE);
@@ -27,6 +29,7 @@ public class Game extends JPanel implements KeyListener{
         
     }
     
+    //Graphics for Snake, Apple, and Background
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -41,6 +44,7 @@ public class Game extends JPanel implements KeyListener{
         }
     }
 
+    //Updates game continously, also sets game rules such as collisions and snake growing
     public void updateGame(){
         if (!gameOver) {
             snake.move();
@@ -61,12 +65,12 @@ public class Game extends JPanel implements KeyListener{
             apple.newRandomApplePosition(GRID_WIDTH, GRID_HEIGHT);
         }
     }
-
+    //Bool logic for if snake and apple meet
     public boolean didSnakeEatApple(int snakePositionX, int snakePositionY, int applePositionX, int applePositionY){
         return (snakePositionX == applePositionX && snakePositionY == applePositionY);
     }
     
-
+    //Keyboard Controls for snake
     @Override
     public void keyPressed(KeyEvent e){
         switch (e.getKeyCode()){
